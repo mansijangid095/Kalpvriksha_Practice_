@@ -1,0 +1,147 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <string.h>
+
+ 
+
+typedef struct {
+
+    char cooperation[50];
+
+    char subrub[50];
+
+    char city[50];
+
+} Values;
+
+ 
+
+int main() {
+
+    int inputs, index, numberOfQueries, subIndex;
+
+    printf("Enter number of inputs: ");
+
+    scanf("%d", &inputs);
+
+ 
+
+    // Create a dynamic array of values
+
+    Values* valuesArr = (Values*)malloc(inputs * sizeof(Values));
+
+ 
+
+    // Create a map using an array of key-value pairs
+
+    int* keys = (int*)malloc(inputs * sizeof(int));
+
+    for (index = 0; index < inputs; index++) {
+
+        printf("Enter key: ");
+
+        scanf("%d", &keys[index]);
+
+ 
+
+        printf("Enter cooperation: ");
+
+        scanf("%s", valuesArr[index].cooperation);
+
+ 
+
+        printf("Enter subrub: ");
+
+        scanf("%s", valuesArr[index].subrub);
+
+ 
+
+        printf("Enter city: ");
+
+        scanf("%s", valuesArr[index].city);
+
+    }
+
+ 
+
+    printf("Enter number of queries: ");
+
+    scanf("%d", &numberOfQueries);
+
+ 
+
+    for (index = 0; index < numberOfQueries; index++) {
+
+        int number1, number2;
+
+        printf("Enter number 1: ");
+
+        scanf("%d", &number1);
+
+ 
+
+        printf("Enter number 2: ");
+
+        scanf("%d", &number2);
+
+ 
+
+        Values values1, values2;
+
+        for (subIndex = 0; subIndex < inputs; subIndex++) {
+
+            if (keys[subIndex] == number1) {
+
+                values1 = valuesArr[subIndex];
+
+            }
+
+            if (keys[subIndex] == number2) {
+
+                values2 = valuesArr[subIndex];
+
+            }
+
+        }
+
+ 
+
+        printf("The common values are:\n");
+
+        if (strcmp(values1.cooperation, values2.cooperation) == 0) {
+
+            printf("%s\n", values1.cooperation);
+
+        }
+
+        if (strcmp(values1.subrub, values2.subrub) == 0) {
+
+            printf("%s\n", values1.subrub);
+
+        }
+
+        if (strcmp(values1.city, values2.city) == 0) {
+
+            printf("%s\n", values1.city);
+
+        }
+
+    }
+
+ 
+
+    // Free dynamically allocated memory
+
+    free(valuesArr);
+
+    free(keys);
+
+ 
+
+    return 0;
+
+}
+
+
